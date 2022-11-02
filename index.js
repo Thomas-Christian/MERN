@@ -5,20 +5,21 @@ require("dotenv").config();
 
 const app = express();
 const indexController = require("./controllers/index_controller");
+const { application } = require("express");
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ origin: "https://recipe-backend-mern.herokuapp.com/" }));
 
 //routes
 app.use("/recipes", indexController);
 
 //NOT FOUND
-app.get('*', (req, res) => {
-  res.status(404)
-  res.send('Page Not Found')
-})
+app.get("*", (req, res) => {
+  res.status(404);
+  res.send("Page Not Found");
+});
 
 //db connection
 mongoose
