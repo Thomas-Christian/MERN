@@ -10,7 +10,7 @@ const { application } = require("express");
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "https://recipe-backend-mern.herokuapp.com/" }));
+app.use(cors({ origin: "https://recipe-backend-mern.herokuapp.com/recipes/" }));
 
 //routes
 app.use("/recipes", indexController);
