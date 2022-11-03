@@ -30,6 +30,20 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.error(err));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
+
+const HOST = process.env.HOST || "0.0.0.0";
+// Listen on a specific port via the PORT environment variable
+
+var cors_proxy = require("cors-anywhere");
+cors_proxy
+  .createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ["origin", "x-requested-with"],
+    removeHeaders: ["cookie", "cookie2"],
+  })
+  .listen(port, host, function () {
+    console.log("Running CORS Anywhere on " + host + ":" + port);
+  });
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
